@@ -1,10 +1,15 @@
+/* =========================
+   GLOBAL APP BASE
+========================= */
+
 html,
 body,
 #root {
   width: 100%;
   height: 100%;
   margin: 0;
-  padding: 0;
-  background: #000000;
+  background: #0b0e1a;
   overflow: hidden;
+  font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", Roboto, sans-serif;
 }

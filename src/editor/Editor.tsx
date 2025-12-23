@@ -1,4 +1,8 @@
 import { useEffect } from "react";
+import CustomSidePanel from "./left-panel/CustomSidePanel";
+import { DEFAULT_SECTIONS } from "polotno/side-panel";
+import { CTASection } from "./left-panel/CTASection";
+
 
 import { PolotnoContainer, SidePanelWrap, WorkspaceWrap } from "polotno";
 import { SidePanel } from "polotno/side-panel";
@@ -17,6 +21,12 @@ const store = createStore({
 });
 
 store.addPage();
+const sections = [
+  CTASection,
+  ...DEFAULT_SECTIONS.filter(
+    (s) => s.name !== "upload" // remove only what YOU want
+  ),
+];
 
 export default function Editor() {
   return (
@@ -46,7 +56,15 @@ export default function Editor() {
             borderRight: `1px solid ${STORYLY_COLORS.border}`,
           }}
         >
-          <SidePanel store={store} />
+          <SidePanel
+            store={store}
+            sections={sections}
+            panels={{
+              text: false, // ❌ disable Polotno text panel
+            }}
+          />
+          
+
         </SidePanelWrap>
 
         {/* CENTER CANVAS */}

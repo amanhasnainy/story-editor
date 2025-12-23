@@ -1,54 +1,56 @@
-/* ===== GLOBAL ===== */
-html, body, #root {
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  background: #0B0E1A;
-  overflow: hidden;
+/* ======================================================
+   POLOTNO + BLUEPRINT DARK THEME OVERRIDES
+====================================================== */
+
+/* ----------------------
+   POLOTNO CONTAINER
+----------------------- */
+
+.polotno-container {
+  background: #0b0e1a !important;
 }
 
-/* ===== WORKSPACE ===== */
+/* Workspace surround (the big empty area) */
 .polotno-workspace-container {
-  background: #E6E6E6 !important; /* Storyly canvas surround */
+  background: radial-gradient(
+    60% 60% at 50% 50%,
+    #121634 0%,
+    #0b0e1a 100%
+  ) !important;
 }
 
+/* Remove default padding */
 .polotno-workspace {
   padding: 0 !important;
 }
 
-/* ===== PAGE ===== */
+/* Konva canvas wrapper */
+.konvajs-content {
+  background: #000000 !important;
+}
+
+/* Page shadow */
 .polotno-page {
   box-shadow: none !important;
 }
 
-/* ===== LEFT SIDEBAR ===== */
+/* ----------------------
+   LEFT SIDEBAR (POLOTNO)
+----------------------- */
+
 .polotno-side-panel {
-  background: #0F1430 !important;
-  border-right: 1px solid #1F2552;
+  background: #0f1430 !important;
+  border-right: 1px solid #1f2552;
+  color: #ffffff;
 }
 
-.polotno-side-panel svg {
-  fill: #ffffff !important;
-  opacity: 0.85;
-}
-
-.polotno-side-panel .bp4-active svg {
-  opacity: 1;
-}
-
-/* ===== BUTTON HOVER ===== */
-.polotno-side-panel button:hover {
-  background: rgba(255, 255, 255, 0.06) !important;
-}
-
-/* Sidebar text color */
-.polotno-side-panel,
+/* Sidebar text */
 .polotno-side-panel span,
 .polotno-side-panel label {
   color: #ffffff !important;
 }
 
-/* Muted / secondary text */
+/* Muted text */
 .polotno-side-panel .bp4-text-muted {
   color: #9aa3b2 !important;
 }
@@ -56,65 +58,121 @@ html, body, #root {
 /* Icons */
 .polotno-side-panel svg {
   fill: #ffffff !important;
-  stroke: none !important;
   opacity: 0.85;
 }
 
-/* Active tab: icon + text stronger */
 .polotno-side-panel .bp4-active svg,
 .polotno-side-panel .bp4-active span {
   opacity: 1;
-  color: #ffffff !important;
 }
 
-/* Smooth sidebar appearance */
-.polotno-side-panel {
-  transition: opacity 180ms ease, transform 180ms ease;
-  will-change: opacity, transform;
+/* Hover */
+.polotno-side-panel button:hover {
+  background: rgba(255, 255, 255, 0.06) !important;
 }
 
-/* When hidden (Polotno adds this internally) */
-.polotno-side-panel[style*="display: none"] {
-  opacity: 0;
-  transform: translateX(-8px);
-}
-/* ===== FORCE DARK WORKSPACE (REAL FIX) ===== */
+/* ----------------------
+   LEFT DRAWER ANIMATION
+   (THIS IS THE KEY FIX)
+----------------------- */
 
-/* Outer containers */
-.polotno-container,
-.polotno-workspace-container,
-.polotno-workspace {
-  background: #000000 !important;
+.polotno-container > .polotno-side-panel-wrap {
+  transition: width 240ms cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: width;
+  overflow: hidden;
 }
 
-/* THIS is the missing piece */
-.konvajs-content {
-  background: #000000 !important;
+/* ----------------------
+   RIGHT SIDEBAR (CUSTOM)
+----------------------- */
+
+.storyly-right-sidebar {
+  width: 320px;
+  background: #0f1430;
+  border-left: 1px solid #1f2552;
+  padding: 12px;
+  overflow-y: auto;
 }
 
-/* Remove fake paper effect */
-.polotno-page {
+/* ----------------------
+   RIGHT SIDEBAR TOOLBAR
+----------------------- */
+
+.storyly-right-sidebar .bp4-navbar {
+  background: transparent !important;
   box-shadow: none !important;
+  padding: 0 !important;
 }
 
-/* Safety: remove any inline light bg */
-.polotno-workspace * {
-  background-color: transparent;
-}
-/* Force dark background on Konva canvas wrapper */
-.konvajs-content {
-  background: #000000 !important;
+.storyly-right-sidebar .bp4-navbar-group {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px;
 }
 
-/* Extra safety: target inline style case */
-.konvajs-content[style] {
-  background: #000000 !important;
+/* Buttons */
+.storyly-right-sidebar button {
+  background: #12183f !important;
+  border: 1px solid #1f2552 !important;
+  border-radius: 10px;
+  height: 36px;
+  padding: 0 12px;
+  color: #ffffff;
 }
-.polotno-workspace-container {
-  background-color: transparent !important;
-  background-image: radial-gradient(
-    60% 60% at 50% 50%,
-    #121634 0%,
-    #0b0e1a 100%
-  ) !important;
+
+.storyly-right-sidebar button:hover {
+  background: #1a2160 !important;
+}
+
+.storyly-right-sidebar .bp4-active {
+  background: #5b6cff !important;
+  border-color: #5b6cff !important;
+}
+
+/* Inputs */
+.storyly-right-sidebar input,
+.storyly-right-sidebar select {
+  width: 100%;
+  background: #12183f !important;
+  border: 1px solid #1f2552 !important;
+  color: #ffffff !important;
+  border-radius: 8px;
+  padding: 6px;
+}
+
+/* Labels */
+.storyly-right-sidebar label {
+  font-size: 12px;
+  color: #9aa3b2;
+}
+
+/* Remove separators */
+.storyly-right-sidebar .bp4-divider {
+  display: none;
+}
+/* ============================
+   RESTORE ICON CIRCLE (Storyly)
+============================ */
+
+/* Default icon circle */
+.polotno-side-panel .bp4-button {
+  background: rgba(255, 255, 255, 0.06) !important;
+  border-radius: 50% !important;
+  width: 40px;
+  height: 40px;
+  padding: 0 !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hover */
+.polotno-side-panel .bp4-button:hover {
+  background: rgba(255, 255, 255, 0.12) !important;
+}
+
+/* Active tab (Storyly glow) */
+.polotno-side-panel .bp4-active {
+  background: #5b6cff !important;
+  box-shadow: 0 0 0 2px rgba(91, 108, 255, 0.4);
 }

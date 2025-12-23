@@ -1,0 +1,118 @@
+.storyly-right {
+  width: 320px;
+  background: linear-gradient(180deg, #141638, #0b0e1a);
+  border-left: 1px solid #1f2552;
+  color: #fff;
+  height: 100%;
+}
+
+.storyly-tabs {
+  display: flex;
+  padding: 12px;
+  gap: 20px;
+  border-bottom: 1px solid #1f2552;
+}
+
+.storyly-tabs button {
+  background: none;
+  border: none;
+  color: #9aa3b2;
+  font-size: 16px;
+  padding-bottom: 8px;
+  cursor: pointer;
+}
+
+.storyly-tabs button.active {
+  color: #fff;
+  border-bottom: 3px solid #7cf0ff;
+}
+
+.storyly-tab-content {
+  padding: 16px;
+  overflow-y: auto;
+}
+
+.section {
+  margin-bottom: 24px;
+}
+
+.section h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+label {
+  font-size: 14px;
+  color: #9aa3b2;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  background: #1b1f46;
+  border: 1px solid #2a2f6a;
+  border-radius: 12px;
+  padding: 10px;
+  color: #fff;
+  margin-top: 6px;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.input-box {
+  position: relative;
+}
+
+.icon-btn {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  background: #2a2f6a;
+  border-radius: 8px;
+  color: #fff;
+  border: none;
+}
+
+.delete-btn {
+  width: 100%;
+  background: transparent;
+  border: 1px solid #2a2f6a;
+  color: #fff;
+  border-radius: 999px;
+  padding: 14px;
+  margin-top: 20px;
+}
+hr {
+  border: none;
+  height: 1px;
+  background: #2a2f6a;
+  margin: 16px 0;
+}
+
+select {
+  margin-bottom: 10px;
+}
+.tab-button {
+  background: none;
+  border: none;
+  color: #9aa3b2;
+  font-size: 15px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.tab-button.active {
+  color: #ffffff;
+  border-bottom: 3px solid #7cf0ff;
+}
+
+.tab-button.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}

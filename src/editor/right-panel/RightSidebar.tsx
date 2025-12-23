@@ -1,29 +1,51 @@
+import { useEffect, useState } from "react";
 import { observer } from "mobx-react-lite";
-import { STORYLY_COLORS } from "../themes/storylyColors";
-import ThemePanel from "./ThemePanel";
-import TextSettings from "./TextSettings";
-import CTASettings from "./CTASettings";
+import GeneralTab from "./tabs/GeneralTab";
+import AnimationTab from "./tabs/AnimationTab";
+import "./rightSidebar.css";
 
 const RightSidebar = observer(({ store }: any) => {
-  const selected = store.selectedElements[0];
+  const [tab, setTab] = useState<"general" | "animation">("general");
+
+  const hasSelection = store.selectedElements.length > 0;
+
+  // ✅ Auto-switch back to General when selection is cleared
+  useEffect(() => {
+    if (!hasSelection && tab === "animation") {
+      setTab("general");
+    }
+  }, [hasSelection, tab]);
 
   return (
-    <div
-  style={{
-    width: 300,
-    background: "linear-gradient(180deg, #151A36 0%, #0E1226 100%)",
-    color: "#FFFFFF",
-    padding: 18,
-    borderLeft: "1px solid #1F2552",
-  }}
->
+    <div className="storyly-right">
+      {/* Tabs */}
+      <div className="storyly-tabs">
+        <button
+          className={`tab-button ${tab === "general" ? "active" : ""}`}
+          onClick={() => setTab("general")}
+        >
+          General
+        </button>
 
-      {/* THEMES (always visible) */}
-      <ThemePanel store={store} />
+        <button
+          className={`tab-button ${
+            tab === "animation" ? "active" : ""
+          } ${!hasSelection ? "disabled" : ""}`}
+          disabled={!hasSelection}
+          onClick={() => hasSelection && setTab("animation")}
+        >
+          Animation
+        </button>
+      </div>
 
-      {/* PROPERTIES */}
-      {selected?.type === "text" && <TextSettings element={selected} />}
-      {selected?.custom?.role === "cta" && <CTASettings element={selected} />}
+      {/* Content */}
+      <div className="storyly-tab-content">
+        {tab === "general" && <GeneralTab store={store} />}
+
+        {tab === "animation" && hasSelection && (
+          <AnimationTab store={store} />
+        )}
+      </div>
     </div>
   );
 });
